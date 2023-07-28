@@ -10,6 +10,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     profileimg = models.ImageField(upload_to='profile_images', default='blank-profile-picture.png')
     location = models.CharField(max_length=100, blank=True)
+
     SPORTS = (
         (1, 'football'),
         (2, 'basketball'),
@@ -21,7 +22,7 @@ class Profile(models.Model):
         (8, 'boxing'),
         (9, 'chess'),
     )
-    sport = models.IntegerField(verbose_name='sport', choices=SPORTS)
+    sport = models.IntegerField(verbose_name='sport', choices=SPORTS, null=True, blank=True, default=1)
 
     # преобразование к типу строки, для вывода в шаблоны и бд
     def __str___(self):
