@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from .models import Profile, SportsForm
+from .models import Profile
 from django.contrib.auth.decorators import login_required
+from .forms import SportForm
 
 
 # Create your views here.
@@ -18,7 +19,6 @@ def index(request):
 def settings(request):
     user_profile = Profile.objects.get(user=request.user)
     context = {'user_profile': user_profile}
-    context['form'] = SportsForm
 
     if request.method == 'POST':
 
@@ -26,24 +26,24 @@ def settings(request):
             image = user_profile.profileimg
             bio = request.POST['bio']
             location = request.POST['location']
-            # sport = SportsForm(request.POST)
+            sport = request.POST['sport']
 
             user_profile.profileimg = image
             user_profile.bio = bio
             user_profile.location = location
-            # user_profile.sport = sport
+            user_profile.sport = sport
             user_profile.save()
 
         if request.FILES.get('image') != None:
             image = request.FILES.get('image')
             bio = request.POST['bio']
             location = request.POST['location']
-            # sport = SportsForm(request.POST)
+            sport = request.POST['sport']
 
             user_profile.profileimg = image
             user_profile.bio = bio
             user_profile.location = location
-            # user_profile.sport = sport
+            user_profile.sport = sport
             user_profile.save()
 
         return redirect('settings')

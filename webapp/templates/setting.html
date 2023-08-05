@@ -50,21 +50,33 @@
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-
-
                         <div class="col-span-2">
                             <label for=""> Profile Image</label>
                             <img width="100" height="100" src="{{user_profile.profileimg.url}}" />
                             <input type="file" name="image" value="" class="shadow-none bg-gray-100">
                         </div>
+
                         <div class="col-span-2">
                             <label for="about">Bio</label>
                             <textarea id="about" name="bio" rows="3"
                                 class="shadow-none bg-gray-100">{{user_profile.bio}}</textarea>
                         </div>
+
                         <div class="col-span-2">
-                            {{ form }}
+                            <label for="">Sport: {{ user_profile.sport }}</label>
+                            <select name=sport>
+                                <option value="football">football</option>
+                                <option value="basketball">basketball</option>
+                                <option value="volleyball">volleyball</option>
+                                <option value="hockey">hockey</option>
+                                <option value="athletics">athletics</option>
+                                <option value="diving">diving</option>
+                                <option value="biathlon">biathlon</option>
+                                <option value="boxing">boxing</option>
+                                <option value="chess">chess</option>
+                            </select>
                         </div>
+
                         <div class="col-span-2">
                             <label for=""> Location</label>
                             <input type="text" name="location" value="{{user_profile.location}}"

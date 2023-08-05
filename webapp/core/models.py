@@ -16,22 +16,19 @@ class Profile(models.Model):
     location = models.CharField(max_length=100, blank=True)
 
     SPORTS = (
-        (1, 'football'),
-        (2, 'basketball'),
-        (3, 'volleyball'),
-        (4, 'hockey'),
-        (5, 'athletics'),
-        (6, 'diving'),
-        (7, 'biathlon'),
-        (8, 'boxing'),
-        (9, 'chess'),
+        ('football', 'football'),
+        ('basketball', 'basketball'),
+        ('volleyball', 'volleyball'),
+        ('hockey', 'hockey'),
+        ('athletics', 'athletics'),
+        ('diving', 'diving'),
+        ('biathlon', 'biathlon'),
+        ('boxing', 'boxing'),
+        ('chess', 'chess'),
     )
 
-    sport = models.IntegerField(verbose_name='sport', choices=SPORTS, null=True, blank=True, default=1)
+    sport = models.CharField(max_length=16, choices=SPORTS, null=True, blank=True, default='football')
 
     # преобразование к типу строки, для вывода в шаблоны и бд
     def __str___(self):
         return self.user.username
-    
-class SportsForm(forms.Form):
-    sport = forms.ChoiceField(choices = Profile.SPORTS)
