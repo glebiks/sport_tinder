@@ -151,22 +151,27 @@
         </div>
     </header>
 
+    {% for suggestion in user_suggestions %}
     <!-- из тиндер шаблона -->
     <div class="content">
+
+        
         <div class="card">
             <div class="user">
                 <img class="user"
-                    src="{{user_profile.profileimg.url}}"
+                    src="{{suggestion.profileimg.url}}"
                     alt="" />
                 <div class="profile">
-                    <div class="name">{{user.username}}</div>
+                    <div class="name">{{suggestion.user}}</div>
                     <div class="local">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>{{user_profile.location}}</span>
+                        <span>{{suggestion.location}}</span>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <div class="buttons">
             <div class="no">
                 <i class="fas fa-times"></i>
@@ -180,6 +185,7 @@
         </div>
     </div>
     <!-- -->
+    {% endfor %}
 
     <!-- <div class="container m-auto"> -->
 

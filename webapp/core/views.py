@@ -11,7 +11,11 @@ from .forms import SportForm
 @login_required(login_url='signin')
 def index(request):
     user_profile = Profile.objects.get(user=request.user)
-    context = {'user_profile': user_profile}
+
+    user_suggestions = Profile.objects.all()
+    print(user_suggestions[1].user)
+
+    context = {'user_profile': user_profile, 'user_suggestions': user_suggestions}
     return render(request, 'index.html', context)
 
 

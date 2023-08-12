@@ -79,6 +79,7 @@ body {
 }
 
 .content .card .user {
+	position: relative;
 	width: 380px;
 	height: 450px;
 	object-fit: cover;
@@ -88,10 +89,8 @@ body {
 
 .content .card .user .profile {
 	position: absolute;
-	/* bottom: 0px;
-	left: 20px; */
-	bottom: 36%;
-	left: 38%;
+	bottom: 0px;
+	left: 20px;
 }
 
 .content .card .user .name {
