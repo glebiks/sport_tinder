@@ -151,6 +151,7 @@
         </div>
     </header>
 
+
     {% for suggestion in user_suggestions %}
     <!-- из тиндер шаблона -->
     <div class="content">
@@ -163,7 +164,7 @@
                     <div class="name">{{suggestion.user}}</div>
                     <div class="local">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>{{suggestion.location}}</span>
+                        <span>{{suggestion.location}}: {{ suggestion.sport }}</span>
                     </div>
                 </div>
             </div>
@@ -186,11 +187,11 @@
     {% endfor %}
 
 
-
     <!-- Scripts
     ================================================== -->
     <script>
         
+        // heart
         var parent = document.getElementsByTagName('body')[0]
         var nodes = document.getElementsByClassName('heart');
 
@@ -200,6 +201,15 @@
         }.bind(null, i));
         }
 
+        // cross
+        var parent = document.getElementsByTagName('body')[0]
+        var nodes = document.getElementsByClassName('no');
+
+        for (var i = 0; i < nodes.length; i++) {
+        nodes[i].addEventListener('click', function() {
+            parent.removeChild(document.getElementsByClassName("content")[0]);
+        }.bind(null, i));
+        }
         
     </script>
 
