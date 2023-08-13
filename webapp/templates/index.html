@@ -149,7 +149,7 @@
     </header>
 
 
-    <!-- {% for suggestion in user_suggestions %} -->
+    {% for suggestion in user_suggestions %}
     <!-- из тиндер шаблона -->
     <form action="" method="POST" class="card_content">
         {% csrf_token %}
@@ -185,7 +185,7 @@
         </div>
     </form>
     <!-- -->
-    <!-- {% endfor %} -->
+    {% endfor %}
 
 
     <!-- Scripts
