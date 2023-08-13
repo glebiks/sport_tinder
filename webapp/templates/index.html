@@ -31,19 +31,16 @@
 
     <header>
         <div class="header_inner">
-            <form action="/search" method="POST">
-                {% csrf_token %}
-                <div class="left-side">
-                    <!-- Logo -->
-                    <div id="logo" class="">
-                        <a href="#">
-                            <b>
-                                <h1 style="text-transform: uppercase;">Sport Tinder</h1>
-                            </b>
-                        </a>
-                    </div>
+            <div class="left-side">
+                <!-- Logo -->
+                <div id="logo" class="">
+                    <a href="#">
+                        <b>
+                            <h1 style="text-transform: uppercase;">Sport Tinder</h1>
+                        </b>
+                    </a>
                 </div>
-            </form>
+            </div>
 
             <!-- matches -->
             <div style="margin-left: auto; padding: 6px; border: 1px solid black; border-radius: 14px;">
@@ -154,35 +151,39 @@
 
     {% for suggestion in user_suggestions %}
     <!-- из тиндер шаблона -->
-    <div class="content">
+    <form action="" method="POST" class="card_content">
+        {% csrf_token %}
+        <div class="content">
 
-
-        <div class="card">
-            <div class="user">
-                <img class="user" src="{{suggestion.profileimg.url}}" alt="" />
-                <div class="profile">
-                    <div class="name">{{suggestion.user}}</div>
-                    <div class="local">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>{{suggestion.location}}: {{ suggestion.sport }}</span>
+            <div class="card">
+                <div class="user">
+                    <img class="user" src="{{suggestion.profileimg.url}}" alt="" />
+                    <div class="profile">
+                        <div class="name">{{suggestion.user}}</div>
+                        <div class="local">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{suggestion.location}}: {{ suggestion.sport }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="buttons">
+                <div class="no">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="star">
+                    <i class="fas fa-star fa"></i>
+                </div>
 
-        <div class="buttons">
-            <div class="no">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="star">
-                <i class="fas fa-star fa"></i>
-            </div>
-            <div class="heart">
-                <i class="fas fa-heart"></i>
+                <div class="heart">
+                    <!-- <i class="fas fa-heart"></i> -->
+                    <input type="hidden" name="suggestion_id" value="{{ suggestion.id_user }}" />
+                    <button type="submit" class="fas fa-heart"></button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <!-- -->
     {% endfor %}
 
@@ -190,27 +191,31 @@
     <!-- Scripts
     ================================================== -->
     <script>
-        
         // heart
-        var parent = document.getElementsByTagName('body')[0]
-        var nodes = document.getElementsByClassName('heart');
+        // function wrapper(){
+        // var parent = document.getElementsByTagName('body')[0]
+        // parent.removeChild(document.getElementsByClassName("card_content")[0]);
 
-        for (var i = 0; i < nodes.length; i++) {
-        nodes[i].addEventListener('click', function() {
-            parent.removeChild(document.getElementsByClassName("content")[0]);
-        }.bind(null, i));
-        }
+        
+        // var nodes = document.getElementsByClassName('heart');
+
+        // for (var i = 0; i < nodes.length; i++) {
+        //     nodes[i].addEventListener('click', function () {
+        //         parent.removeChild(document.getElementsByClassName("card_content")[0]);
+        //     }.bind(null, i));
+        // }
+        // }
 
         // cross
-        var parent = document.getElementsByTagName('body')[0]
-        var nodes = document.getElementsByClassName('no');
+        // var parent = document.getElementsByTagName('body')[0]
+        // var nodes = document.getElementsByClassName('no');
 
-        for (var i = 0; i < nodes.length; i++) {
-        nodes[i].addEventListener('click', function() {
-            parent.removeChild(document.getElementsByClassName("content")[0]);
-        }.bind(null, i));
-        }
-        
+        // for (var i = 0; i < nodes.length; i++) {
+        //     nodes[i].addEventListener('click', function () {
+        //         parent.removeChild(document.getElementsByClassName("card_content")[0]);
+        //     }.bind(null, i));
+        // }
+
     </script>
 
     <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
@@ -218,9 +223,6 @@
     <script src="{% static 'assets/js/uikit.js' %}"></script>
     <script src="{% static 'assets/js/simplebar.js' %}"></script>
     <script src="{% static 'assets/js/custom.js' %}"></script>
-
-
-    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
 </body>
 
 

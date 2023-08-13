@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django import forms
-from jsonfield import *
+from django.core.validators import int_list_validator
 
 User = get_user_model()
 
@@ -30,6 +29,8 @@ class Profile(models.Model):
     )
 
     sport = models.CharField(max_length=16, choices=SPORTS, null=True, blank=True, default='football')
+
+    matches = models.CharField(default=f'{id_user}',validators=[int_list_validator], max_length=256)  
 
     # преобразование к типу строки, для вывода в шаблоны и бд
     def __str___(self):
