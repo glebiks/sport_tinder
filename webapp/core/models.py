@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django import forms
+from jsonfield import *
 
 User = get_user_model()
 
@@ -10,6 +11,7 @@ User = get_user_model()
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id_user = models.IntegerField()
+    tg_link = models.CharField(max_length=30, blank=True)
     bio = models.TextField(blank=True)
     profileimg = models.ImageField(
         upload_to='profile_images', default='blank-profile-picture.png')

@@ -31,11 +31,13 @@ def settings(request):
             bio = request.POST['bio']
             location = request.POST['location']
             sport = request.POST['sport']
+            tg_link = request.POST['tg_link']
 
             user_profile.profileimg = image
             user_profile.bio = bio
             user_profile.location = location
             user_profile.sport = sport
+            user_profile.tg_link = tg_link
             user_profile.save()
 
         if request.FILES.get('image') != None:
@@ -43,11 +45,13 @@ def settings(request):
             bio = request.POST['bio']
             location = request.POST['location']
             sport = request.POST['sport']
+            tg_link = request.POST['tg_link']
 
             user_profile.profileimg = image
             user_profile.bio = bio
             user_profile.location = location
             user_profile.sport = sport
+            user_profile.tg_link = tg_link
             user_profile.save()
 
         return redirect('settings')
