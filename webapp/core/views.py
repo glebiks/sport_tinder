@@ -14,8 +14,6 @@ def index(request):
     user_profile = Profile.objects.get(user=request.user)
     user_matches = [int(i) for i in user_profile.matches.split(',')]
     print(user_matches)
-    # user_suggestions = Profile.objects.filter(~Q(user=request.user)) # также сделать проверку на тех, кто уже есть в списке mathces
-                                                                     # or Profile.id_user not in user_matches
     user_suggestions = [el for el in Profile.objects.iterator() if el.id_user not in user_matches]
     context = {'user_profile': user_profile, 'user_suggestions': user_suggestions}
 
