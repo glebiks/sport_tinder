@@ -30,7 +30,7 @@ class Profile(models.Model):
 
     sport = models.CharField(max_length=16, choices=SPORTS, null=True, blank=True, default='football')
 
-    matches = models.CharField(default=f'{id_user}',validators=[int_list_validator], max_length=256)  
+    matches = models.CharField(default='0',validators=[int_list_validator], max_length=256)  
 
     # преобразование к типу строки, для вывода в шаблоны и бд
     def __str___(self):
