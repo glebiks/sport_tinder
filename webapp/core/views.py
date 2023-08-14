@@ -14,16 +14,29 @@ def index(request):
     user_profile = Profile.objects.get(user=request.user)
     user_matches = [int(i) for i in user_profile.matches.split(',')]
     print(user_matches)
-    user_suggestions = [el for el in Profile.objects.iterator() if el.id_user not in user_matches]
-    context = {'user_profile': user_profile, 'user_suggestions': user_suggestions}
+    user_suggestions = [
+        el for el in Profile.objects.iterator() if el.id_user not in user_matches]
+    context = {'user_profile': user_profile,
+               'user_suggestions': user_suggestions}
 
     if request.method == 'POST':
         suggestion_id = request.POST['suggestion_id']
         user_profile.matches += (','+str(suggestion_id))
         user_profile.save()
         return redirect('index')
-    
+
     return render(request, 'index.html', context)
+
+
+@login_required(login_url='signin')
+def matches(request):
+    user_profile = Profile.objects.get(user=request.user)
+    user_matches = [int(i) for i in user_profile.matches.split(',')]
+    match_users = [el for el in Profile.objects.iterator()
+                   if el.id_user in user_matches[1:]]
+
+    context = {'user_profile': user_profile, 'match_users': match_users}
+    return render(request, 'matches.html', context)
 
 
 @login_required(login_url='signin')

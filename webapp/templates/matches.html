@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- из шаблона тиндера -->
-    <link rel="stylesheet" href="{% static 'css/style_match.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_match_two.css' %}" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,500&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
@@ -44,9 +44,9 @@
 
             <!-- matches -->
             <div style="margin-left: auto; padding: 6px; border: 1px solid black; border-radius: 14px;">
-                <a href="/matches">
+                <a href="/">
                     <b>
-                        <h1 style="text-transform: uppercase;">Matches</h1>
+                        <h1 style="text-transform: uppercase;">Home</h1>
                     </b>
                 </a>
             </div>
@@ -149,41 +149,22 @@
     </header>
 
 
-    {% for suggestion in user_suggestions %}
+    {% for match_user in match_users %}
     <!-- из тиндер шаблона -->
-    <form action="" method="POST" class="card_content">
-        {% csrf_token %}
         <div class="content">
 
             <div class="card">
                 <div class="user">
-                    <img class="user" src="{{suggestion.profileimg.url}}" alt="" />
+                    <img class="user" src="{{match_user.profileimg.url}}" alt="" />
                     <div class="profile">
-                        <div class="name">{{suggestion.user}}</div>
+                        <div class="name">{{match_user.user}}: {{ match_user.tg_link }}</div>
                         <div class="local">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>{{suggestion.location}}: {{ suggestion.sport }}</span>
+                            <span>{{match_user.location}}: {{ match_user.sport }}</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="buttons">
-                <div class="no">
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="star">
-                    <i class="fas fa-star fa"></i>
-                </div>
-
-                <div class="heart">
-                    <!-- <i class="fas fa-heart"></i> -->
-                    <input type="hidden" name="suggestion_id" value="{{ suggestion.id_user }}" />
-                    <button type="submit" class="fas fa-heart"></button>
-                </div>
-            </div>
-        </div>
-    </form>
     <!-- -->
     {% endfor %}
 
